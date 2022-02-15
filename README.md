@@ -1,21 +1,47 @@
 # ReportsGenerator
 
-**TODO: Add description**
+## Run app
 
-## Installation
+Install dependencies
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `reports_generator` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:reports_generator, "~> 0.1.0"}
-  ]
-end
+```bash
+$ mix deps.get
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/reports_generator>.
+Run tests
 
+```bash
+$ mix test
+```
+
+Run normal version
+
+```bash
+$ iex -S mix
+
+iex> ReportsGenerator.build("report_complete.csv")
+```
+
+Run with parallel version
+
+```bash
+$ iex -S mix
+
+iex> ReportsGenerator.build_from_many(["report_1.csv", "report_2.csv", "report_3.csv"])
+```
+
+Get runtime from normal version
+
+```bash
+$ iex -S mix
+
+iex> :timer.tc(fn -> ReportsGenerator.build("report_complete.csv") end)
+```
+
+Get runtime from parallel version
+
+```bash
+$ iex -S mix
+
+iex> :timer.tc(fn -> ReportsGenerator.build_from_many(["report_1.csv", "report_2.csv", "report_3.csv"]) end)
+```
